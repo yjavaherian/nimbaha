@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نیم بها یاب</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'WebYekan';
+            src: url('WebYekan.woff') format('woff');
+        }
+        body {
+            font-family: 'WebYekan', sans-serif;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loader {
+            animation: spin 0.8s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div class="container mx-auto p-4 max-w-3xl">
+        <header class="text-center my-8">
+            <div class="flex justify-center items-center gap-3">
+                <i data-lucide="cloud-check" class="w-10 h-10 text-indigo-600"></i>
+                <h1 class="text-4xl font-bold text-slate-900">نیم بها یاب</h1>
+            </div>
+            <p class="mt-2 text-lg text-slate-600">بررسی کنید که آیا سرور میزبان شما شامل تخفیف اینترنت نیم‌بها می‌شود یا خیر</p>
+        </header>
+
+        <main>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="input-section">
+                    <label for="urlInput" class="block text-md font-semibold text-slate-700 mb-2">لینک یا دامنه را وارد کنید:</label>
+                    <div class="flex gap-2">
+                        <input 
+                            type="text" 
+                            id="urlInput" 
+                            class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                            placeholder="مثال: https://example.com/file.zip یا example.com"
+                            autocomplete="off"
+                            dir="ltr"
+                        >
+                        <button id="checkBtn" class="bg-indigo-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-indigo-700 active:bg-indigo-800 transition-colors flex items-center gap-2 disabled:bg-slate-400 disabled:cursor-not-allowed">
+                            <span class="hidden sm:inline">بررسی</span>
+                            <i data-lucide="search" class="w-5 h-5"></i>
+                            <span class="loader hidden w-5 h-5 border-2 border-white/30 border-t-white rounded-full"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="result" class="result hidden mt-4 p-4 rounded-lg text-center"></div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-slate-800">تاریخچه بررسی‌ها</h2>
+                    <button id="clearHistoryBtn" class="text-sm font-semibold text-red-600 hover:text-red-700 transition-colors">پاک کردن تاریخچه</button>
+                </div>
+                <div id="historyList" class="history-list">
+                    <p class="empty-history text-center text-slate-500 py-4">هنوز بررسی‌ای انجام نشده است</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 text-center">
+                    <div class="text-3xl font-bold text-indigo-600" id="totalIPs">...</div>
+                    <div class="text-md text-slate-600 mt-1">تعداد کل IP ها</div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 text-center">
+                    <div class="text-3xl font-bold text-indigo-600" id="lastUpdate">-</div>
+                    <div class="text-md text-slate-600 mt-1">آخرین بروزرسانی</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-6">
+                <a href="ips.txt" download class="flex-1 bg-slate-200 text-slate-800 font-semibold py-3 px-4 rounded-lg hover:bg-slate-300 transition-colors flex items-center justify-center gap-2">
+                    <i data-lucide="download" class="w-5 h-5"></i>
+                    دانلود لیست IP ها
+                </a>
+                <a href="https://github.com/${{ github.repository }}/releases" target="_blank" class="flex-1 bg-slate-800 text-white font-semibold py-3 px-4 rounded-lg hover:bg-slate-900 transition-colors flex items-center justify-center gap-2">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                    مشاهده در گیت‌هاب
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
